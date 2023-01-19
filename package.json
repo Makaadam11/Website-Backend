@@ -1,0 +1,19 @@
+{
+  "name": "htdocs",
+  "version": "1.0.0",
+  "description": "MySql connector",
+  "main": "connector.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Adam Mąka",
+  "license": "ISC",
+  "dependencies": {
+    "cors": "^2.8.5",
+    "ejs": "^3.1.8",
+    "express": "^4.18.2",
+    "mysql": "^2.18.1",
+    "mysql2": "^2.3.3",
+    "ws": "^8.11.0"
+  }
+}

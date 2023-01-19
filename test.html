@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Conversation</title>
+  </head>
+  <body>
+  <!-- Create a container to hold the conversation -->
+  <div id="conversation"></div>
+
+  <!-- Set up a form to allow the user to send messages -->
+  <form id="message-form">
+    <input type="text" id="message-input" placeholder="Enter message">
+    <button type="submit">Send</button>
+  </form>
+
+  <!-- Load the WebSocket client script -->
+  <script>
+    // Connect to the WebSocket server
+    const socket = new WebSocket('ws://localhost:8080');
+
+    // When the connection is established
+    socket.onopen = () => {
+      console.log('Connected to WebSocket server');
+    };
+
+    // When a message is received from the server
+    socket.onmessage = (event) => {
+      // Add the message to the conversation
+      const message = event.data;
+      const conversation = document.getElementById('conversation');
+      const messageElement = document.createElement('div');
+      messageElement.innerText = message;
+      conversation.appendChild(messageElement);
+    };
+
+    // When the connection is closed
+    socket.onclose = () => {
+      console.log('Disconnected from WebSocket server');
+    };
+
+    // When the form is submitted
+    document.getElementById('message-form').onsubmit = (event) => {
+      event.preventDefault();
+
+      // Get the message from the input
+    
+    // When the form is submitted
+    document.getElementById('message-form').onsubmit = (event) => {
+      event.preventDefault();
+
+      // Get the message from the input
+      const input = document.getElementById('message-input');
+      const message = input.value;
+
+      // Send the message to the server
+      socket.send(message);
+
+      // Clear the input
+      input.value = '';
+    };
+  }
+  </script>
+  </body>
+</html>
